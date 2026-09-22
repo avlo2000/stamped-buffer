@@ -1,5 +1,5 @@
-#ifndef LIE_BUFFERS_STAMPED_RING_BUFFER_HPP
-#define LIE_BUFFERS_STAMPED_RING_BUFFER_HPP
+#ifndef STAMPED_BUFFER_STAMPED_RING_BUFFER_HPP
+#define STAMPED_BUFFER_STAMPED_RING_BUFFER_HPP
 
 #include <algorithm>
 #include <atomic>
@@ -10,9 +10,9 @@
 #include <type_traits>
 #include <vector>
 
-#include "lie_buffers/detail/seqlock.hpp"
+#include "stamped_buffer/detail/seqlock.hpp"
 
-namespace lie_buffers {
+namespace stamped_buffer {
 
 template <class T>
 struct StampedElement {
@@ -154,6 +154,6 @@ private:
   alignas(64) std::atomic<std::uint64_t> published_{0};
 };
 
-}  // namespace lie_buffers
+}  // namespace stamped_buffer
 
-#endif  // LIE_BUFFERS_STAMPED_RING_BUFFER_HPP
+#endif  // STAMPED_BUFFER_STAMPED_RING_BUFFER_HPP

@@ -1,6 +1,6 @@
-# lie-buffers
+# stamped-buffer
 
-`lie-buffers` is a small, header-only C++17 library providing a timestamped,
+`stamped-buffer` is a small, header-only C++17 library providing a timestamped,
 fixed-capacity ring buffer for a single producer and multiple concurrent
 consumers.
 
@@ -12,9 +12,9 @@ consumers.
 ## Usage
 
 ```cpp
-#include <lie_buffers/stamped_ring_buffer.hpp>
+#include <stamped_buffer/stamped_ring_buffer.hpp>
 
-lie_buffers::StampedRingBuffer<int> samples(128);
+stamped_buffer::StampedRingBuffer<int> samples(128);
 samples.add({100, 42});
 
 auto latest = samples.get_latest();
@@ -41,12 +41,12 @@ ctest --test-dir build --output-on-failure
 After installing the project:
 
 ```cmake
-find_package(lie-buffers CONFIG REQUIRED)
-target_link_libraries(your_target PRIVATE lie_buffers::lie_buffers)
+find_package(stamped-buffer CONFIG REQUIRED)
+target_link_libraries(your_target PRIVATE stamped_buffer::stamped_buffer)
 ```
 
 It can also be embedded with `add_subdirectory`; set
-`LIE_BUFFERS_BUILD_TESTS=OFF` when the parent project should not build this
+`STAMPED_BUFFER_BUILD_TESTS=OFF` when the parent project should not build this
 library's tests.
 
 ## License

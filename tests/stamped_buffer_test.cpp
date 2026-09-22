@@ -7,13 +7,13 @@
 #include <chrono>
 #include <cmath>
 #include <cstddef>
-#include <lie_buffers/stamped_ring_buffer.hpp>
+#include <stamped_buffer/stamped_ring_buffer.hpp>
 #include <random>
 #include <stdexcept>
 #include <thread>
 #include <vector>
 
-using lie_buffers::StampedRingBuffer;
+using stamped_buffer::StampedRingBuffer;
 
 TEST(StampedRingBufferTest, BasicFunctionality) {
   StampedRingBuffer<int> buffer(5);

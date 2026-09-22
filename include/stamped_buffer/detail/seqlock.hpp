@@ -20,20 +20,20 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#ifndef LIE_BUFFERS_DETAIL_SEQLOCK_HPP
-#define LIE_BUFFERS_DETAIL_SEQLOCK_HPP
+#ifndef STAMPED_BUFFER_DETAIL_SEQLOCK_HPP
+#define STAMPED_BUFFER_DETAIL_SEQLOCK_HPP
 
 #include <atomic>
 #include <cstddef>
 #include <type_traits>
 
 #if !defined(NDEBUG) && (defined(__GNUC__) || defined(__clang__))
-#define LIE_BUFFERS_NOINLINE __attribute__((noinline))
+#define STAMPED_BUFFER_NOINLINE __attribute__((noinline))
 #else
-#define LIE_BUFFERS_NOINLINE
+#define STAMPED_BUFFER_NOINLINE
 #endif
 
-namespace lie_buffers::detail {
+namespace stamped_buffer::detail {
 
 // Adapted from https://github.com/rigtorp/Seqlock.
 template <typename T>
@@ -44,7 +44,7 @@ public:
 
   Seqlock() noexcept : sequence_(0) {}
 
-  LIE_BUFFERS_NOINLINE T load() const noexcept {
+  STAMPED_BUFFER_NOINLINE T load() const noexcept {
     T copy;
     std::size_t before;
     std::size_t after;
@@ -58,7 +58,7 @@ public:
     return copy;
   }
 
-  LIE_BUFFERS_NOINLINE void store(const T& desired) noexcept {
+  STAMPED_BUFFER_NOINLINE void store(const T& desired) noexcept {
     const auto sequence = sequence_.load(std::memory_order_relaxed);
     sequence_.store(sequence + 1U, std::memory_order_release);
     std::atomic_signal_fence(std::memory_order_acq_rel);
@@ -74,8 +74,8 @@ private:
   std::atomic<std::size_t> sequence_;
 };
 
-}  // namespace lie_buffers::detail
+}  // namespace stamped_buffer::detail
 
-#undef LIE_BUFFERS_NOINLINE
+#undef STAMPED_BUFFER_NOINLINE
 
-#endif  // LIE_BUFFERS_DETAIL_SEQLOCK_HPP
+#endif  // STAMPED_BUFFER_DETAIL_SEQLOCK_HPP

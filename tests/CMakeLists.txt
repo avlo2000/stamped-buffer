@@ -21,7 +21,7 @@ foreach(test_source IN ITEMS stamped_buffer_test.cpp stamped_buffer_mt_test.cpp)
   add_executable("${test_name}" "${test_source}")
   target_link_libraries(
     "${test_name}"
-    PRIVATE lie_buffers::lie_buffers GTest::gtest_main Threads::Threads
+    PRIVATE stamped_buffer::stamped_buffer GTest::gtest_main Threads::Threads
   )
   gtest_discover_tests("${test_name}")
 endforeach()
