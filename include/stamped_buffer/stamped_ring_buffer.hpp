@@ -18,7 +18,7 @@ namespace stamped_buffer {
 template <class T>
 struct StampedElement {
   StampedElement() = default;
-  StampedElement(std::uint64_t timestamp, T element) : ts(timestamp), elem(element) {}
+  StampedElement(std::uint64_t timestamp, const T& element) : ts(timestamp), elem(element) {}
 
   std::uint64_t ts{};
   T elem{};
