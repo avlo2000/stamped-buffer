@@ -28,10 +28,15 @@ else()
 endif()
 
 option(STAMPED_BUFFER_BUILD_TESTS "Build stamped-buffer tests" ${STAMPED_BUFFER_IS_TOP_LEVEL})
+option(STAMPED_BUFFER_BUILD_BENCHMARKS "Build stamped-buffer benchmarks" OFF)
 
 if(STAMPED_BUFFER_BUILD_TESTS)
   enable_testing()
   add_subdirectory(tests)
+endif()
+
+if(STAMPED_BUFFER_BUILD_BENCHMARKS)
+  add_subdirectory(benchmarks)
 endif()
 
 install(TARGETS stamped_buffer EXPORT stamped-bufferTargets)

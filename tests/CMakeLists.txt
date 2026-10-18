@@ -16,7 +16,7 @@ endif()
 find_package(Threads REQUIRED)
 include(GoogleTest)
 
-foreach(test_source IN ITEMS stamped_buffer_test.cpp stamped_buffer_mt_test.cpp)
+foreach(test_source IN ITEMS stamped_buffer_test.cpp stamped_buffer_mt_test.cpp stamped_buffer_optimization_test.cpp)
   get_filename_component(test_name "${test_source}" NAME_WE)
   add_executable("${test_name}" "${test_source}")
   target_link_libraries(
